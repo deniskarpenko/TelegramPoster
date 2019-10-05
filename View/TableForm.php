@@ -3,8 +3,10 @@ namespace View;
 
 class TableForm extends Page
 {
-    public function DrawTableInfo()
+    public static function DrawTableInfo($tables)
     {
-        
+        foreach ($tables as $table) {
+            
+        }
     }
 }

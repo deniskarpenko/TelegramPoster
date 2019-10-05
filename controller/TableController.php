@@ -11,7 +11,8 @@ class TableController
         $page = new TableForm(); 
         $page->getHead('Выберите таблицу и поля');
         $db = new DB($dbpath);
-        $db->getTablesInfo();
+        $tables = $db->getTablesInfo();
+        print_r($tables);
     }
 }
 

@@ -12,12 +12,31 @@ class DB extends SQLite3
     public function getTablesInfo()
     {
        $tables = $this->query("select * from sqlite_master where type = 'table'");
-       echo "test - ".$tables->fetchArray()['sql'];
+      $sql = $tables->fetchArray()['sql'];
+      $tablesinfo = [];
+        if (preg_match_all('/create table (.+?) \(/i', $sql, $tnames)) {
+            for ($i = 0; $i < count($tnames[1]); $i++) {
+                $fields = $this->getFieldsTable($tnames[1][$i]);
+                array_push($tablesinfo, $fields);
+            }
+        }
+        return $tablesinfo;
         
     }
-    /*Метод принимает */
-    public function getInfoTableFromSQL($sql)
+    protected function getFieldsTable($table)
     {
-        
+        $fields = [];
+        $fieldsarr = [];
+        $tableinfo = $this->query("pragma table_info($table)");
+            while ($fields = $tableinfo->fetchArray()) {
+                $field =  [ 
+                    'name' => $fields[1],
+                    'type' => $fields[2]
+                        ];
+                array_push($fieldsarr, $field);
+            }
+        $fields['fields'] = $fieldsarr;   
+        $fields['table'] = $table;
+        return $fields;
     }
-}
+}             
