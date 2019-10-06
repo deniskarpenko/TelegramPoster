@@ -12,7 +12,7 @@ class TableController
         $page->getHead('Выберите таблицу и поля');
         $db = new DB($dbpath);
         $tables = $db->getTablesInfo();
-        print_r($tables);
+        $page->DrawTableInfo($tables);
     }
 }
 

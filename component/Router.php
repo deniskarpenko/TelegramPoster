@@ -1,7 +1,10 @@
 <?php
 namespace component;
+
 use controller\IndexController AS IndexController;
 use controller\TableController;
+use controller\PostingController;
+
 class Router{
     function __construct() {
         
@@ -29,6 +32,10 @@ class Router{
         }
         elseif ($path == 'table/field') {
             $controller = new TableController($_POST['file']);
+        }
+        elseif ($path  == 'table/field/posting') {
+           $controller = new PostingController();
+           echo "!!!!!!!";
         }
     }
 }
