@@ -1,6 +1,6 @@
 <?php
 namespace controller;
-
+session_start();
 use model\DB;
 use View\TableForm;
 
@@ -15,4 +15,3 @@ class TableController
         $page->DrawTableInfo($tables);
     }
 }
-

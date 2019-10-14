@@ -39,4 +39,12 @@ class DB extends SQLite3
         $fields['table'] = $table;
         return $fields;
     }
+   public function executeQuery($sql)
+   {
+       $res = $this->query($sql);
+       echo "$sql";
+        while ($fields = $res->fetchArray()) {
+            print_r($fields);
+        }
+   }
 }             

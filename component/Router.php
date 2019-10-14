@@ -35,7 +35,6 @@ class Router{
         }
         elseif ($path  == 'table/field/posting') {
            $controller = new PostingController();
-           echo "!!!!!!!";
         }
     }
 }
