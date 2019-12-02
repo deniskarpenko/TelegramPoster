@@ -8,7 +8,7 @@ class IndexController
     public function __construct()
     {
     }
-    public function index()
+    public function actionIndex()
     {
         $page = new SqliteConnectForm();
         $page->getHead("Выберите базу данных");

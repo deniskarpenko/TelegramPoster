@@ -2,14 +2,12 @@
 namespace component;
 
 use controller\IndexController AS IndexController;
-use controller\TableController;
-use controller\PostingController;
-
 class Router{
-    function __construct() {
+    function __construct() 
+    {
         
     }
-    public function getURI()
+    private function _getUri()
     {
         if (!empty($_SERVER['REQUEST_URI'])) {
             return trim($_SERVER['REQUEST_URI'], '/');
@@ -24,17 +22,20 @@ class Router{
         }
     }
  
-    public function Route(){
-        $path = $this->getURI();
+    public function Route()
+    {
+        $path = $this->_getUri();
         if (empty($path)) {
              $controller = new IndexController();
-             $controller->index();
-        }
-        elseif ($path == 'table/field') {
-            $controller = new TableController($_POST['file']);
-        }
-        elseif ($path  == 'table/field/posting') {
-           $controller = new PostingController();
+             $controller->actionIndex();
+        } else {
+            $path_url = parse_url($path);
+            $url_params = explode('/', $path_url['path']);
+            $class_controller = "controller\\".ucfirst($url_params[0])."Controller";
+            $method = isset($url_params[1]) ? "action".ucfirst($url_params[1]) : 'actionIndex';
+            $controller = new $class_controller();
+            $controller->$method();
+            //$controller = new 
         }
     }
 }
