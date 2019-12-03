@@ -1,7 +1,5 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
-use controller\TableController;
-use controller\PostingController;
 
 use component\Router AS Router;
 spl_autoload_register();

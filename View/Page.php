@@ -11,7 +11,7 @@ class Page
     public function getHead($title, $links=[])
     {
         echo "<html>\n<head>\n<title>$title</title>\n</head>\n";
-        if (count($links > 0)) {
+        if (count($links) > 0) {
             array_map(function($link){
                 echo "<link href='$link' rel='stylesheet'>";
             }, $links);   
